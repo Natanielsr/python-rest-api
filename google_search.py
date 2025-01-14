@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import unquote
 
 class GoogleSearch:
     def __init__(self, query, site):
@@ -23,13 +24,23 @@ class GoogleSearch:
 
         for result in soup.find_all('h3'):
             link = result.find_parent('a')['href']
-            results.append(link)
+
+            # Filtrar apenas links que contêm "/musica/"
+            if "/musica/" in link:
+                # Decodificar o link para lidar com caracteres especiais
+                decoded_link = unquote(link)
+
+                # Extrair o nome da música do link
+                music_name = decoded_link.split("/musica/")[1].replace('-', ' ').strip('/').title()
+
+                # Adicionar o dicionário com nome e link à lista de resultados
+                results.append({'nome': music_name, 'link': link})
         
         return results
 
 # Exemplo de uso:
 if __name__ == '__main__':
-    query = 'pelas estradas da vida'
+    query = 'santo'
     site = 'site:musicasparamissa.com.br'
     
     google_search = GoogleSearch(query, site)
