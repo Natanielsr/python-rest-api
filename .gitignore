@@ -1,0 +1,25 @@
+# Diretório de ambiente virtual
+venv/
+
+# Arquivos de compilação
+*.pyc
+*.pyo
+__pycache__/
+
+# Arquivos do sistema
+.DS_Store  # Para Mac
+Thumbs.db  # Para Windows
+
+# Arquivos de configuração do IDE (Exemplos para alguns editores)
+.vscode/
+.idea/
+
+# Arquivos de dependências
+Pipfile.lock
+
+# Arquivos temporários de log
+*.log
+
+# Arquivos de banco de dados (caso você use SQLite ou outros bancos locais)
+*.db
+*.sqlite3
