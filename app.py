@@ -1,62 +1,16 @@
 from flask import Flask, jsonify, request
+from routes.tasks import tasks_bp  # Importando o Blueprint de tarefas
+from routes.search import search_bp  # Importando o Blueprint de busca
 
 app = Flask(__name__)
 
-# Dados de exemplo
-tasks = [
-    {'id': 1, 'title': 'Estudar Python', 'done': False},
-    {'id': 2, 'title': 'Criar aplicação REST', 'done': False}
-]
+# Registrando os Blueprints
+app.register_blueprint(tasks_bp)
+app.register_blueprint(search_bp)
 
-# Rota para listar todas as tarefas
 @app.route('/')
 def home():
     return "Application Running"
-
-# Rota para listar todas as tarefas
-@app.route('/tasks', methods=['GET'])
-def get_tasks():
-    return jsonify({'tasks': tasks})
-
-# Rota para pegar uma tarefa específica
-@app.route('/tasks/<int:task_id>', methods=['GET'])
-def get_task(task_id):
-    task = next((task for task in tasks if task['id'] == task_id), None)
-    if task is None:
-        return jsonify({'error': 'Tarefa não encontrada'}), 404
-    return jsonify({'task': task})
-
-# Rota para criar uma nova tarefa
-@app.route('/tasks', methods=['POST'])
-def create_task():
-    data = request.get_json()
-    new_task = {
-        'id': len(tasks) + 1,
-        'title': data['title'],
-        'done': data.get('done', False)
-    }
-    tasks.append(new_task)
-    return jsonify({'task': new_task}), 201
-
-# Rota para atualizar uma tarefa
-@app.route('/tasks/<int:task_id>', methods=['PUT'])
-def update_task(task_id):
-    task = next((task for task in tasks if task['id'] == task_id), None)
-    if task is None:
-        return jsonify({'error': 'Tarefa não encontrada'}), 404
-    
-    data = request.get_json()
-    task['title'] = data.get('title', task['title'])
-    task['done'] = data.get('done', task['done'])
-    
-    return jsonify({'task': task})
-
-# Rota para deletar uma tarefa
-@app.route('/tasks/<int:task_id>', methods=['DELETE'])
-def delete_task(task_id):
-    global tasks
-    tasks = [task for task in tasks if task['id'] != task_id]
-    return jsonify({'message': 'Tarefa deletada'})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
