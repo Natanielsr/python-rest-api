@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import os
 
 from flask import Flask, jsonify, request
 from routes.tasks import tasks_bp  # Importando o Blueprint de tarefas
