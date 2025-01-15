@@ -34,7 +34,7 @@ class GoogleSearch:
                 music_name = decoded_link.split("/musica/")[1].replace('-', ' ').strip('/').title()
 
                 # Adicionar o dicionário com nome e link à lista de resultados
-                results.append({'nome': music_name, 'link': link})
+                results.append({'name': music_name, 'link': link})
         
         return results
 

@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 from flask import Flask, jsonify, request
 from routes.tasks import tasks_bp  # Importando o Blueprint de tarefas
 from routes.search import search_bp  # Importando o Blueprint de busca
