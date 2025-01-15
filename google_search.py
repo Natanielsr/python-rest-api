@@ -10,14 +10,21 @@ class GoogleSearch:
         self.headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
     
     def search(self):
-        response = requests.get(self.url, headers=self.headers)
+        try:
+            response = requests.get(self.url, headers=self.headers)
+            
+            if response.status_code == 200:
+                return self.parse_results(response.text)
+            else:
+                print("Erro ao realizar a pesquisa: ", self.query)
+                print(f"Código de status: {response.status_code}")
+                print("Conteúdo da resposta:", response.text)
+                return ["Erro ao realizar a pesquisa"]
+            
+        except requests.exceptions.RequestException as e:
+            print("Erro ao fazer a requisição:", e)
+            return ["Erro ao realizar a pesquisa"]
         
-        if response.status_code == 200:
-            return self.parse_results(response.text)
-        else:
-            print("Erro ao realizar a pesquisa")
-            return []
-    
     def parse_results(self, html_content):
         soup = BeautifulSoup(html_content, 'html.parser')
         results = []
