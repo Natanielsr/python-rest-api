@@ -16,14 +16,12 @@ class GoogleSearch:
             if response.status_code == 200:
                 return self.parse_results(response.text)
             else:
-                print("Erro ao realizar a pesquisa: ", self.query)
-                print(f"Código de status: {response.status_code}")
-                print("Conteúdo da resposta:", response.text)
-                return ["Erro ao realizar a pesquisa"]
+                # Lança uma exceção com a mensagem de erro detalhada
+                raise Exception(f"Erro ao realizar a pesquisa: {self.query} | Código de status: {response.status_code} | Conteúdo da resposta: {response.text}")
             
         except requests.exceptions.RequestException as e:
-            print("Erro ao fazer a requisição:", e)
-            return ["Erro ao realizar a pesquisa"]
+             # Captura erros relacionados à requisição e lança uma exceção
+            raise Exception(f"Erro ao fazer a requisição: {e}")
         
     def parse_results(self, html_content):
         soup = BeautifulSoup(html_content, 'html.parser')

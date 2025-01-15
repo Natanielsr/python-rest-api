@@ -8,6 +8,12 @@ def get_search_results(query):
     site = 'site:musicasparamissa.com.br'
     
     google_search = GoogleSearch(query, site)
-    links = google_search.search()
+    try:
+        links = google_search.search()
+        return jsonify({'results': links})
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+        # Retorna o erro como resposta JSON, com código 500 para erro interno
+        return jsonify({'error': str(e)}), 500
     
-    return jsonify({'results': links})
+   
