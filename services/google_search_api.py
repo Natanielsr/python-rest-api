@@ -51,20 +51,20 @@ class GoogleSearchAPI:
         if 'items' in results:
             items = results['items']
             musics = []
+            #print(items)
             for item in items:
                 link = item['link']
-                musics.append(self.create_obj(link))
+                title : str = item['title']
+                name = title.replace(" - Músicas para Missa", "")
+
+                musics.append(self.create_obj(link, name))
 
             return musics
         else:
             return ["Nenhum resultado encontrado."]
 
-    def create_obj(self, link):
-        # Decodificar o link para lidar com caracteres especiais
-        decoded_link = unquote(link)
-        # Extrair o nome da música do link
-        music_name = decoded_link.split("/musica/")[1].replace('-', ' ').strip('/').title()
-        return {'name': music_name, 'link': link}
+    def create_obj(self, link, name):
+        return {'name': name, 'link': link}
 
 # Exemplo de uso
 if __name__ == "__main__":
