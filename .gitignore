@@ -25,3 +25,5 @@ Pipfile.lock
 *.sqlite3
 
 googleSearchApiKey.json
+
+.env
