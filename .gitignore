@@ -23,3 +23,5 @@ Pipfile.lock
 # Arquivos de banco de dados (caso você use SQLite ou outros bancos locais)
 *.db
 *.sqlite3
+
+googleSearchApiKey.json

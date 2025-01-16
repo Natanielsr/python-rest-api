@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from extract_lyric import LyricExtractor
+from services.extract_lyric import LyricExtractor
 
 lyric_bp = Blueprint('lyric', __name__)
 
