@@ -4,7 +4,7 @@ import os
 from flask import Flask, jsonify, request
 from routes.tasks import tasks_bp  # Importando o Blueprint de tarefas
 from routes.search import search_bp  # Importando o Blueprint de busca
-from routes.railway import railway_bp  # Importando o Blueprint de busca
+from routes.tester import tester_bp  # Importando o Blueprint de busca
 from routes.lyric import lyric_bp  # Importando o Blueprint de busca
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ app = Flask(__name__)
 app.register_blueprint(tasks_bp)
 app.register_blueprint(search_bp)
 app.register_blueprint(lyric_bp)
-app.register_blueprint(railway_bp)
+app.register_blueprint(tester_bp)
 
 @app.route('/')
 def home():

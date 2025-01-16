@@ -1,6 +1,6 @@
 import os
 
-class RailwayEnvTester:
+class EnvTester:
     def __init__(self):
         self.api_key = None
         self.search_engine_id = None
@@ -28,7 +28,7 @@ class RailwayEnvTester:
 
 # Testando a classe
 if __name__ == "__main__":
-    tester = RailwayEnvTester()
+    tester = EnvTester()
 
     # Carregar as variáveis de ambiente
     tester.load_env_variables()

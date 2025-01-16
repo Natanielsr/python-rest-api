@@ -1,12 +1,12 @@
-from railway_env_tester import RailwayEnvTester
+from tester.env_tester import EnvTester
 from flask import Blueprint, jsonify
 
-railway_bp = Blueprint('railway', __name__)
+tester_bp = Blueprint('tester', __name__)
 
-@railway_bp.route('/railway', methods=['GET'])
+@tester_bp.route('/tester/envtest', methods=['GET'])
 def railway_env_tester():
     try:
-        tester = RailwayEnvTester()
+        tester = EnvTester()
 
         # Carregar as variáveis de ambiente
         tester.load_env_variables()
