@@ -55,13 +55,20 @@ class GoogleSearchAPI:
             for item in items:
                 link = item['link']
                 title : str = item['title']
-                name = title.replace(" - Músicas para Missa", "")
+
+                name = self.remove_suffix_after_dash(title)
 
                 musics.append(self.create_obj(link, name))
 
             return musics
         else:
             return ["Nenhum resultado encontrado."]
+        
+    def remove_suffix_after_dash(self, text):
+        indice = text.rfind(" - ")
+        if indice != -1:
+            return text[:indice]
+        return text
 
     def create_obj(self, link, name):
         return {'name': name, 'link': link}
@@ -69,5 +76,5 @@ class GoogleSearchAPI:
 # Exemplo de uso
 if __name__ == "__main__":
     search_api = GoogleSearchAPI()
-    result = search_api.search("Amém")
+    result = search_api.search("Eliana Ribeiro")
     print(result)
