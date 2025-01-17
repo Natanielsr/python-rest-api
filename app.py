@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 import os
 
-from flask import Flask, jsonify, request
+from flask import Flask
 from routes.tasks import tasks_bp  # Importando o Blueprint de tarefas
 from routes.search import search_bp  # Importando o Blueprint de busca
 from routes.tester import tester_bp  # Importando o Blueprint de busca
 from routes.lyric import lyric_bp  # Importando o Blueprint de busca
 
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 # Registrando os Blueprints
 app.register_blueprint(tasks_bp)
