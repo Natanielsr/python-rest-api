@@ -7,7 +7,7 @@ lyric_bp = Blueprint('lyric', __name__)
 def get_search_results(url):
 
     if not url.startswith('https://musicasparamissa.com.br/musica/'):
-        return jsonify({'error': 'URL inválida ou não suportada.'}), 400
+        return jsonify({'error': f'URL: "{url}" inválida ou não suportada.'}), 400
 
     lyric_extractor = LyricExtractor(url)
     lyric = lyric_extractor.get_lyric()
