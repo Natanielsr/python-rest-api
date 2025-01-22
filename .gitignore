@@ -29,4 +29,4 @@ googleSearchApiKey.json
 .env
 
 #arquivos de slides gerados
-slide_file/
+slide_file/*.pptx
