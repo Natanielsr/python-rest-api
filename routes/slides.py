@@ -1,6 +1,9 @@
-from flask import Blueprint, jsonify, request
-
-from dto.MusicDTO import MusicDTO
+import uuid
+from flask import Blueprint, jsonify, request, send_from_directory
+from dto.music_dto import MusicDTO
+from services.music_list import MusicList
+from slides_generator.music import Music
+from slides_generator.presentation_generator import PresentationGenerator
 from validators.ValidateURL import ValidateURL
 from werkzeug.exceptions import BadRequest
 
@@ -12,22 +15,45 @@ def generate_slides():
         data = request.get_json()
         validate_data(data)
         params = data.get('params')
-        music_list = get_music_list(params)
+        music_list_dto : MusicDTO = get_music_list(params)
+
+        ml = MusicList(music_list_dto)
+        ml.create_music_list()
+        music_list : list[Music] = ml.get_music_list()
+        path = 'slide_file/'
+
+        prs = PresentationGenerator(music_list, False, path)
+        prs.generate_presentation_slides()
+        file_name = str(uuid.uuid4().hex) + '.pptx'
+        prs.save_presentation_file(file_name)
+
+        host_url = request.host_url
+
     except BadRequest as e:
         return jsonify({'error': e.description}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-    #TODO Implementar a geração dos slides
 
     # Processa os dados conforme necessário
-    return jsonify({'slides': 'slides', 'received_data': [music.to_dict() for music in music_list]})
+    return jsonify({
+        'message': 'Slides generated successfully',
+        'file_url': host_url + 'slides/download/' + file_name,
+        'received_data': [music.to_dict() for music in music_list]
+    })
+
+@slides_bp.route('/slides/download/<filename>', methods=['GET'])
+def download_file(filename):
+    try:
+        return send_from_directory('slide_file', filename, as_attachment=True)
+    except FileNotFoundError:
+        return jsonify({'error': 'Arquivo não encontrado'}), 404
 
 def validate_data(data):
     if 'params' not in data:
         raise BadRequest(description='Parâmetros não encontrados')
 
-def get_music_list(params) : 
+def get_music_list(params) -> MusicDTO: 
     music_list = []
     for param in params:
         if not isinstance(param, dict):
@@ -35,7 +61,6 @@ def get_music_list(params) :
         if 'name' not in param or 'link' not in param:
             raise BadRequest(description='Cada parâmetro deve conter "name" e "link"')
 
-        print(param['link'])
         if ValidateURL.is_valid(param['link']) is False:
             raise BadRequest(description=f'Link ({param["link"]}) inválido')
         

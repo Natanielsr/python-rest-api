@@ -27,3 +27,6 @@ Pipfile.lock
 googleSearchApiKey.json
 
 .env
+
+#arquivos de slides gerados
+slide_file/

@@ -1,18 +1,24 @@
 import requests
 from bs4 import BeautifulSoup
+from requests.exceptions import RequestException
 
 class LyricExtractor:
-    def __init__(self, url):
-        self.url = url
-        self.lyric = None
+    def __init__(self):
+        self.lyric = ''
+
+    def get_lyric(self, url):
+        try:
+            self.fetch_lyric(url)
+        except RequestException as e:
+            raise RuntimeError(f"Erro ao fazer a requisição para a URL: {e}")
+        except Exception as e:
+            raise RuntimeError(f"Erro ao extrair a letra da música: {e}")
+
+        return self.lyric
     
-    def fetch_lyric(self):
-        if not self.is_valid_url():
-            self.lyric = f'endereço da música inválido'
-            return
-        
+    def fetch_lyric(self, url):
         # Fazer a requisição para a página
-        response = requests.get(self.url)
+        response = requests.get(url)
 
         soup = BeautifulSoup(response.content, 'html.parser')
         
@@ -25,19 +31,8 @@ class LyricExtractor:
                 br_tag.replace_with('\n')
             self.lyric = lyric_div.get_text().strip()
         else:
-            self.lyric = "Não foi possível encontrar a letra da música."
+            raise ValueError("Elemento contendo a letra da música não encontrado")
     
-    def get_lyric(self):
-        if self.lyric is None:
-            self.fetch_lyric()
-        return self.lyric
-    
-    def is_valid_url(self):
-        # Verificar se a URL começa com o prefixo desejado
-        prefix = 'https://musicasparamissa.com.br/musica/'
-        if self.url.startswith(prefix):
-            return True
-        return False
 
 # Exemplo de uso:
 if __name__ == '__main__':
@@ -45,5 +40,5 @@ if __name__ == '__main__':
     url = 'https://musicasparamissa.com.br/musica/santo-leo-mantovani/'
 
     # Criando uma instância da classe e extraindo a letra
-    lyrics_extractor = LyricExtractor(url)
-    print(lyrics_extractor.get_lyrics())
+    lyrics_extractor = LyricExtractor()
+    print(lyrics_extractor.get_lyric(url))
