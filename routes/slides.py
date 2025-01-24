@@ -38,8 +38,7 @@ def generate_slides():
     # Processa os dados conforme necessário
     return jsonify({
         'message': 'Slides generated successfully',
-        'file_url': host_url + 'slides/download/' + file_name,
-        'received_data': [music.to_dict() for music in music_list]
+        'file_url': host_url + 'slides/download/' + file_name
     })
 
 @slides_bp.route('/slides/download/<filename>', methods=['GET'])
