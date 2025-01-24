@@ -10,7 +10,7 @@ def get_search_results(url):
     if ValidateURL.is_valid(url) is False:
         return jsonify({'error': f'URL: "{url}" inválida ou não suportada.'}), 400
 
-    lyric_extractor = LyricExtractor(url)
-    lyric = lyric_extractor.get_lyric()
+    lyric_extractor = LyricExtractor()
+    lyric = lyric_extractor.get_lyric(url)
     
     return jsonify({'lyric': lyric})
