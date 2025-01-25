@@ -1,14 +1,14 @@
-from services.extract_lyric import LyricExtractor
+from services.lyric_extractor import LyricExtractor
 from dto.music_dto import MusicDTO
 from slides_generator.music import Music
 
-class MusicList:
+class MusicListFactory:
     def __init__(self, musicDTO_list : list[MusicDTO]):
         self.extractor = LyricExtractor()
         self.music_list : list[Music] = []
         self.musicDTO_list = musicDTO_list
 
-    def get_music_list(self):
+    def get_music_list(self) -> list[Music]:
         return self.music_list
         
     def create_music_list(self):

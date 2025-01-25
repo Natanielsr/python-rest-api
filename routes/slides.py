@@ -1,7 +1,7 @@
 import uuid
 from flask import Blueprint, jsonify, request, send_from_directory
 from dto.music_dto import MusicDTO
-from services.music_list import MusicList
+from services.music_list_factory import MusicListFactory
 from slides_generator.music import Music
 from slides_generator.presentation_generator import PresentationGenerator
 from validators.ValidateURL import ValidateURL
@@ -17,7 +17,7 @@ def generate_slides():
         params = data.get('params')
         music_list_dto : MusicDTO = get_music_list(params)
 
-        ml = MusicList(music_list_dto)
+        ml = MusicListFactory(music_list_dto)
         ml.create_music_list()
         music_list : list[Music] = ml.get_music_list()
         path = 'slide_file/'

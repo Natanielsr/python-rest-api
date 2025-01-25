@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from requests.exceptions import RequestException
 
-class LyricExtractor:
+class LyricExtractorMusicasParaMissa:
     def __init__(self):
         self.lyric = ''
 
@@ -40,5 +40,5 @@ if __name__ == '__main__':
     url = 'https://musicasparamissa.com.br/musica/santo-leo-mantovani/'
 
     # Criando uma instância da classe e extraindo a letra
-    lyrics_extractor = LyricExtractor()
+    lyrics_extractor = LyricExtractorMusicasParaMissa()
     print(lyrics_extractor.get_lyric(url))
