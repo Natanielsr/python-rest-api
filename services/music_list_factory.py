@@ -18,9 +18,3 @@ class MusicListFactory:
                 self.music_list.append(Music(music.name, lyric))
         except Exception as e:
             raise RuntimeError(f"Erro ao criar lista músicas: {e}")
-
-if __name__ == "__main__":
-    musicDTO_list = [MusicDTO("title", 'https://musicasparamissa.com.br/musica/santo-leo-mantovani/')]
-    musicList = MusicList(musicDTO_list)
-    musicList.create_music_list()
-    print(musicList.get_music_list)

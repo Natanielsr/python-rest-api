@@ -53,8 +53,12 @@ class GoogleSearchAPI:
             musics = []
             #print(items)
             for item in items:
-                link = item['link']
+                link: str = item['link']
                 title : str = item['title']
+
+                if link.endswith('.html') or link.count('/') <= 4: #não incluir links que terminem com .html
+                    #print(link)
+                    continue
 
                 name = self.remove_suffix_after_dash(title)
 
