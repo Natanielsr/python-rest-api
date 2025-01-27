@@ -28,6 +28,8 @@ def generate_slides():
         prs.save_presentation_file(file_name)
 
         host_url = request.host_url
+        if not ("localhost" in host_url or "127.0.0.1" in host_url):
+            host_url = host_url.replace("http://", "https://")
 
     except BadRequest as e:
         return jsonify({'error': e.description}), 400
