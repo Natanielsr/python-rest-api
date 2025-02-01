@@ -1,21 +1,18 @@
 ### 📌 **Python REST API**
 
-📌 [🇬🇧 English Version](README.md)  
-📌 [🇧🇷 Versão em Português](README.pt-br.md)  
-
-This is the documentation for the `python-rest-api`, containing endpoints for searching music, generating slides, and retrieving song lyrics.
+Esta é a documentação da API `python-rest-api`, contendo endpoints para busca de músicas, geração de slides e obtenção de letras de músicas.
 
 ## 🚀 **Endpoints**
 
-### 🔍 **Search Music**  
-**GET** `{{domain}}/search/{term}`  
+### 🔍 **Buscar Músicas**  
+**GET** `{{domain}}/search/{termo}`  
 
-**Example:**  
+**Exemplo:**  
 ```sh
 curl -X GET "{{domain}}/search/mãe do emanuel"
 ```
 
-**Example Response:**
+**Exemplo de Resposta:**
 ```json
 {
     "results": [
@@ -33,7 +30,7 @@ curl -X GET "{{domain}}/search/mãe do emanuel"
 
 ---
 
-### 💑 **Generate Slides**  
+### 💑 **Gerar Slides**  
 **POST** `{{domain}}/slides/generate/`  
 
 **Body (JSON):**  
@@ -56,7 +53,7 @@ curl -X GET "{{domain}}/search/mãe do emanuel"
 }
 ```
 
-**Example:**  
+**Exemplo:**  
 ```sh
 curl -X POST "{{domain}}/slides/generate/" \
      -H "Content-Type: application/json" \
@@ -78,7 +75,7 @@ curl -X POST "{{domain}}/slides/generate/" \
     }'
 ```
 
-**Example Response:**
+**Exemplo de Resposta:**
 ```json
 {
     "file_name": "6caca7fe49f846bfbe1d144e0f5aba2c.pptx",
@@ -89,15 +86,15 @@ curl -X POST "{{domain}}/slides/generate/" \
 
 ---
 
-### 🎵 **Get Song Lyrics**  
+### 🎵 **Obter Letra de Música**  
 **GET** `{{domain}}/lyric/{url}`  
 
-**Example:**  
+**Exemplo:**  
 ```sh
 curl -X GET "{{domain}}/lyric/https://www.letras.mus.br/queen/64295/"
 ```
 
-**Example Response:**
+**Exemplo de Resposta:**
 ```json
 {
     "lyric": "Is this the real life?\nIs this just fantasy?\nCaught in a landslide\nNo escape from reality\n\nOpen your eyes\nLook up to the skies and see\nI'm just a poor boy\nI need no sympathy\nBecause I'm easy come, easy go\nLittle high, little low\nAnyway the wind blows\nDoesn't really matter to me\nTo me"
@@ -106,8 +103,8 @@ curl -X GET "{{domain}}/lyric/https://www.letras.mus.br/queen/64295/"
 
 ---
 
-### 📌 **Notes**
-- Replace `{{domain}}` with the actual API domain.
-- The endpoints do not require authentication.
-- Ensure you send correctly formatted JSON when making `POST` requests.
+### 📌 **Observações**
+- Substitua `{{domain}}` pelo domínio da API.
+- Os endpoints não requerem autenticação.
+- Certifique-se de enviar o JSON corretamente formatado ao fazer requisições `POST`.
 
