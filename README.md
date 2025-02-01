@@ -1,8 +1,5 @@
 ### 📌 **Python REST API**
 
-📌 [🇬🇧 English Version](README.md)  
-📌 [🇧🇷 Versão em Português](README.pt-br.md)  
-
 This is the documentation for the `python-rest-api`, containing endpoints for searching music, generating slides, and retrieving song lyrics.
 
 ## 🚀 **Endpoints**
@@ -82,7 +79,7 @@ curl -X POST "{{domain}}/slides/generate/" \
 ```json
 {
     "file_name": "6caca7fe49f846bfbe1d144e0f5aba2c.pptx",
-    "file_url": "{{domain}}/slides/download/6caca7fe49f846bfbe1d144e0f5aba2c.pptx",
+    "file_url": "https://web-production-594d.up.railway.app/slides/download/6caca7fe49f846bfbe1d144e0f5aba2c.pptx",
     "message": "Slides generated successfully"
 }
 ```
@@ -110,4 +107,7 @@ curl -X GET "{{domain}}/lyric/https://www.letras.mus.br/queen/64295/"
 - Replace `{{domain}}` with the actual API domain.
 - The endpoints do not require authentication.
 - Ensure you send correctly formatted JSON when making `POST` requests.
+- Required environment variables:
+  - `GOOGLE_SEARCH_API_KEY`
+  - `GOOGLE_SEARCH_ENGINE_ID`
 

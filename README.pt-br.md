@@ -107,4 +107,7 @@ curl -X GET "{{domain}}/lyric/https://www.letras.mus.br/queen/64295/"
 - Substitua `{{domain}}` pelo domínio da API.
 - Os endpoints não requerem autenticação.
 - Certifique-se de enviar o JSON corretamente formatado ao fazer requisições `POST`.
+- Variáveis ​​de ambiente necessárias:
+  - `GOOGLE_SEARCH_API_KEY`
+  - `GOOGLE_SEARCH_ENGINE_ID`
 
