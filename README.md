@@ -79,7 +79,7 @@ curl -X POST "{{domain}}/slides/generate/" \
 ```json
 {
     "file_name": "6caca7fe49f846bfbe1d144e0f5aba2c.pptx",
-    "file_url": "https://web-production-594d.up.railway.app/slides/download/6caca7fe49f846bfbe1d144e0f5aba2c.pptx",
+    "file_url": "{{domain}}/slides/download/6caca7fe49f846bfbe1d144e0f5aba2c.pptx",
     "message": "Slides generated successfully"
 }
 ```
