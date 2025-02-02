@@ -1,5 +1,9 @@
 ### 📌 **Python REST API**
 
+
+- 📌 [🇬🇧 English Version](README.md)  
+- 📌 [🇧🇷 Versão em Português](README.pt-br.md)  
+
 This is the documentation for the `python-rest-api`, containing endpoints for searching music, generating slides, and retrieving song lyrics.
 
 ## 🚀 **Endpoints**
