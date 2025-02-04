@@ -2,6 +2,9 @@
 
 Esta é a documentação da API `python-rest-api`, contendo endpoints para busca de músicas, geração de slides e obtenção de letras de músicas.
 
+Youtube Video 👉
+[![Watch video on YouTube](https://img.youtube.com/vi/ibtcd_vtW9A/0.jpg)](https://www.youtube.com/watch?v=ibtcd_vtW9A)
+
 ## 🚀 **Endpoints**
 
 ### 🔍 **Buscar Músicas**  

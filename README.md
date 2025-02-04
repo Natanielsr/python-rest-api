@@ -6,6 +6,9 @@
 
 This is the documentation for the `python-rest-api`, containing endpoints for searching music, generating slides, and retrieving song lyrics.
 
+Youtube Video 👉
+[![Watch video on YouTube](https://img.youtube.com/vi/ibtcd_vtW9A/0.jpg)](https://www.youtube.com/watch?v=ibtcd_vtW9A)
+
 ## 🚀 **Endpoints**
 
 ### 🔍 **Search Music**  
