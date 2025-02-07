@@ -1,12 +1,17 @@
-import requests
 from bs4 import BeautifulSoup
+import requests
 
-class LyricExtractorLetras:
-    def __init__(self):
-        self.headers = {'User-Agent': 'Mozilla/5.0'}
+from services.lyric_extractor_abstract_factory.lyric_extractor import LyricExtractor
+from services.lyric_extractor_abstract_factory.lyric_extractor_factory import LyricExtractorFactory
 
-    def get_lyric(self, url):
-        response = requests.get(url, headers=self.headers)
+class LyricExtractorLetrasFactory(LyricExtractorFactory):
+    def create_extractor(self):
+        return LyricExtractorLetras()
+
+class LyricExtractorLetras(LyricExtractor):
+    def get_lyric(self, url : str):
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        response = requests.get(url, headers=headers)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
             div_lyrics = soup.find('div', class_='lyric-original')
@@ -27,9 +32,3 @@ class LyricExtractorLetras:
                 raise Exception(f"Div com a classe 'lyric-original' não encontrada em '{url}'.")
         else:
             raise Exception(f"Erro ao acessar a página '{url}' : {response.status_code}")
-        
-if __name__ == '__main__':
-    # Exemplo de uso
-    url = "https://www.letras.mus.br/ministerio-amor-e-adoracao/gloria-a-deus-nas-alturas/"
-    extractor = LyricExtractorLetras()
-    print(extractor.get_lyric(url))

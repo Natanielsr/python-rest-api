@@ -1,15 +1,17 @@
-import requests
 from bs4 import BeautifulSoup
-from requests.exceptions import RequestException
+import requests
+from services.lyric_extractor_abstract_factory.lyric_extractor import LyricExtractor
+from services.lyric_extractor_abstract_factory.lyric_extractor_factory import LyricExtractorFactory
 
-class LyricExtractorMusicasParaMissa:
-    def __init__(self):
-        self.lyric = ''
+class LyricExtractorMusicasParaMissaFactory(LyricExtractorFactory):
+    def create_extractor(self):
+        return LyricExtractorMusicasParaMissa()
 
-    def get_lyric(self, url):
+class LyricExtractorMusicasParaMissa(LyricExtractor):
+    def get_lyric(self, url : str) -> str:
         try:
             self.fetch_lyric(url)
-        except RequestException as e:
+        except requests.RequestException as e:
             raise RuntimeError(f"Erro ao fazer a requisição para a URL: {e}")
         except Exception as e:
             raise RuntimeError(f"Erro ao extrair a letra da música: {e}")
@@ -32,7 +34,6 @@ class LyricExtractorMusicasParaMissa:
             self.lyric = lyric_div.get_text().strip()
         else:
             raise ValueError("Elemento contendo a letra da música não encontrado")
-    
 
 # Exemplo de uso:
 if __name__ == '__main__':
