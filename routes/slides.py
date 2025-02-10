@@ -50,22 +50,22 @@ def download_file(filename):
     try:
         return send_from_directory('slide_file', filename, as_attachment=True)
     except FileNotFoundError:
-        return jsonify({'error': 'Arquivo não encontrado'}), 404
+        return jsonify({'error': 'File Not Found'}), 404
 
 def validate_data(data):
     if 'params' not in data:
-        raise BadRequest(description='Parâmetros não encontrados')
+        raise BadRequest(description='Parameters not found')
 
 def get_music_list(params) -> MusicDTO: 
     music_list = []
     for param in params:
         if not isinstance(param, dict):
-            raise BadRequest(description='Cada parâmetro deve ser um objeto')
+            raise BadRequest(description='Each parameter must be a object')
         if 'name' not in param or 'link' not in param:
-            raise BadRequest(description='Cada parâmetro deve conter "name" e "link"')
+            raise BadRequest(description='Each parameter must contains a "name" and "link"')
 
         if ValidateURL.is_valid(param['link']) is False:
-            raise BadRequest(description=f'Link ({param["link"]}) inválido')
+            raise BadRequest(description=f'Invalid ({param["link"]}) link')
         
         music = MusicDTO(param['name'], param['link'])
         music_list.append(music)
