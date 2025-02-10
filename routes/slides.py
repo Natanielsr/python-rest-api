@@ -4,6 +4,7 @@ from dto.music_dto import MusicDTO
 from services.music_list_factory import MusicListFactory
 from slides_generator.music import Music
 from slides_generator.presentation_generator import PresentationGenerator
+from util.folder_info import FolderInfo
 from validators.ValidateURL import ValidateURL
 from werkzeug.exceptions import BadRequest
 
@@ -51,6 +52,19 @@ def download_file(filename):
         return send_from_directory('slide_file', filename, as_attachment=True)
     except FileNotFoundError:
         return jsonify({'error': 'File Not Found'}), 404
+    
+@slides_bp.route('/slides/folder-info', methods=['GET'])
+def file_count():
+    folder_path = './slide_file'
+    folder_info = FolderInfo(folder_path)
+    files, size = folder_info.get_info()
+
+    line1 = f"Files: {files}"
+    line2 = f"Total size: {size / (1024 * 1024):.2f} MB"
+    print(line1)
+    print(line2)
+
+    return f"{line1} <br/> {line2}"
 
 def validate_data(data):
     if 'params' not in data:
