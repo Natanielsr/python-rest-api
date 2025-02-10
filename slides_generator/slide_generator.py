@@ -1,3 +1,4 @@
+from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.enum.text import PP_ALIGN
 from pptx.dml.color import RGBColor
@@ -5,8 +6,8 @@ from slides_generator.slide_data import SlideData
 from slides_generator.font_size_calculation import FontSizeCalculation
 
 class SlideGenerator:
-    def __init__(self, presentation, slide_layout, slide_data : SlideData, path_logo : str = None):
-        self.__presentation = presentation
+    def __init__(self, presentation : Presentation, slide_layout, slide_data : SlideData, path_logo : str = None):
+        self.__presentation : Presentation = presentation
         self.__slide_layout = slide_layout
         self.__slide_data = slide_data
         self.path_logo = path_logo
