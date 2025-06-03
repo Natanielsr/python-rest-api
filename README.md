@@ -118,3 +118,61 @@ curl -X GET "{{domain}}/lyric/https://www.letras.mus.br/queen/64295/"
   - `GOOGLE_SEARCH_API_KEY`
   - `GOOGLE_SEARCH_ENGINE_ID`
 
+---
+
+### 🧪 **1. Create the virtual environment (venv)**
+
+Open your terminal and navigate to your project folder:
+
+```bash
+cd /path/to/your/project
+```
+
+Then, create the virtual environment with:
+
+```bash
+python -m venv venv
+```
+
+> This will create a folder named `venv` containing your isolated Python environment.
+
+---
+
+### 🔄 **2. Activate the virtual environment**
+
+* **On Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+* **On Linux/macOS:**
+
+```bash
+source venv/bin/activate
+```
+
+> Once activated, you’ll see the environment name in your terminal prompt, like this: `(venv)`
+
+---
+
+### 📦 **3. Install the requirements**
+
+After activating the virtual environment, install the dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### ✅ Final Tip
+
+To make sure you're using the `pip` from the virtual environment, you can check with:
+
+```bash
+which pip     # Linux/macOS
+where pip     # Windows
+```
+
+---
