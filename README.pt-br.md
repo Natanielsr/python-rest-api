@@ -114,3 +114,66 @@ curl -X GET "{{domain}}/lyric/https://www.letras.mus.br/queen/64295/"
   - `GOOGLE_SEARCH_API_KEY`
   - `GOOGLE_SEARCH_ENGINE_ID`
 
+  Para criar um ambiente virtual (venv) no Python e instalar as dependências de um arquivo `requirements.txt`, siga os passos abaixo:
+
+---
+
+### 🧪 **1. Criar o ambiente virtual (venv)**
+
+Abra o terminal e navegue até a pasta do seu projeto:
+
+```bash
+cd /caminho/para/seu/projeto
+```
+
+Então, crie o ambiente virtual com:
+
+```bash
+python -m venv venv
+```
+
+> Isso criará uma pasta chamada `venv` com o ambiente isolado.
+
+---
+
+### 🔄 **2. Ativar o ambiente virtual**
+
+* **No Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+* **No Linux/macOS:**
+
+```bash
+source venv/bin/activate
+```
+
+> Quando ativado, o terminal vai mostrar o nome do ambiente no início da linha, algo como: `(venv)`
+
+---
+
+### 📦 **3. Instalar os requirements**
+
+Depois de ativar o ambiente, use o `pip` para instalar as dependências:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### ✅ Dica final
+
+Para garantir que está usando o `pip` do ambiente virtual, você pode verificar com:
+
+```bash
+which pip     # Linux/macOS
+where pip     # Windows
+```
+
+---
+
+
+
