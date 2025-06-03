@@ -175,5 +175,14 @@ where pip     # Windows
 
 ---
 
+## 🚀 ** Execute o projeto**
+
+### 🟢 O projeto tem o arquivo principal como `app.py` Execute:
+
+```bash
+python app.py
+```
+
+
 
 

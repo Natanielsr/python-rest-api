@@ -176,3 +176,11 @@ where pip     # Windows
 ```
 
 ---
+
+## 🚀 ** Run the project**
+
+### 🟢 The project have the main file `app.py` Run:
+
+```bash
+python app.py
+```
