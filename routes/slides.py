@@ -73,15 +73,37 @@ def validate_data(data):
 def get_music_list(params) -> MusicDTO: 
     music_list = []
     for param in params:
-        if not isinstance(param, dict):
-            raise BadRequest(description='Each parameter must be a object')
-        if 'name' not in param or 'link' not in param:
-            raise BadRequest(description='Each parameter must contains a "name" and "link"')
-
-        if ValidateURL.is_valid(param['link']) is False:
-            raise BadRequest(description=f'Invalid ({param["link"]}) link')
         
-        music = MusicDTO(param['name'], param['link'])
+        validate_params(param)
+
+        link = ""
+        if 'link' in param:
+            link = param['link']
+
+        lyric = ""
+        if 'lyric' in param:
+            lyric = param['lyric']
+        
+        music = MusicDTO(param['name'], link, lyric)
         music_list.append(music)
 
     return music_list
+
+def validate_params(param):
+    if not isinstance(param, dict):
+        raise BadRequest(description='Each parameter must be a object')
+        
+    if 'name' not in param:
+        raise BadRequest(description='Each parameter must contains a "name"')
+    
+    if 'link' not in param and 'lyric' not in param:
+        raise BadRequest(description='Each parameter must contains a "link" or a "lyric"')
+
+    if 'link' in param:
+        if ValidateURL.is_valid(param['link']) is False:
+            raise BadRequest(description=f'Invalid ({param["link"]}) link')
+    
+    if 'lyric' in param:
+        if  param['lyric'] == "":
+            if 'link' not in param:
+                raise BadRequest(description='If "lyric" is empty, "link" must be provided')
