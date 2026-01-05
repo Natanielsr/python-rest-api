@@ -4,6 +4,7 @@ from slides_generator.music import  Music
 from slides_generator.slide_generator import SlideGenerator
 from slides_generator.slide_data import SlideData
 import traceback
+import os
 
 class PresentationGenerator:
 
@@ -56,7 +57,7 @@ class PresentationGenerator:
         return lyric.strip().split('\n\n')
     
     def save_presentation_file(self, file_name="slides.pptx"):
-        full_path = self.save_path+file_name
+        full_path = os.path.join(self.save_path, file_name)
         print(f"Saving file...")
         self.__presentation.save(full_path)
         print(f"Presentation file saved at {full_path} with Success!")
