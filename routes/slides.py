@@ -7,12 +7,14 @@ from slides_generator.presentation_generator import PresentationGenerator
 from util.folder_info import FolderInfo
 from validators.ValidateURL import ValidateURL
 from werkzeug.exceptions import BadRequest
+from utils import resource_path
 
 slides_bp = Blueprint('slides', __name__)
 
 @slides_bp.route('/slides/generate/', methods=['POST'])
 def generate_slides():
     try:
+        print("start generate slides...")
         data = request.get_json()
         validate_data(data)
         params = data.get('params')
@@ -21,8 +23,9 @@ def generate_slides():
         ml = MusicListFactory(music_list_dto)
         ml.create_music_list()
         music_list : list[Music] = ml.get_music_list()
-        path = 'slide_file/'
-        path_logo = 'images/icon.png'
+        path = resource_path('slide_file')
+        path_logo = resource_path('images/icon.png')
+        print(path_logo)
 
         prs = PresentationGenerator(music_list, False, path, path_logo)
         prs.generate_presentation_slides()

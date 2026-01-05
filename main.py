@@ -8,16 +8,17 @@ from routes.search import search_bp  # Importando o Blueprint de busca
 from routes.tester import tester_bp  # Importando o Blueprint de testes
 from routes.lyric import lyric_bp  # Importando o Blueprint de letras
 from routes.slides import slides_bp  # Importando o Blueprint de slides
+from utils import resource_path
 
 import threading, webbrowser
 
 from flask_cors import CORS
 
-
+static_folder_path = resource_path("web-build")
 
 app = Flask(
     __name__,
-    static_folder="web-build",
+    static_folder=static_folder_path,
     static_url_path=""
     )
 
@@ -42,17 +43,15 @@ def static_files(path):
 def open_browser():
     webbrowser.open("http://127.0.0.1:9170")
 
-def resource_path(relative_path):
-    """Compatível com PyInstaller"""
-    try:
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-    return os.path.join(base_path, relative_path)
+
 
 load_dotenv(resource_path(".env"))
 
 if __name__ == '__main__':
+    print(f"Current execution directory: {os.getcwd()}")
+    print(f"Icon path: {resource_path('images/icon.png')}")
+    print(f"Icon found? {os.path.exists(resource_path('images/icon.png'))}")
+
     threading.Timer(1, open_browser).start()
     port = int(os.environ.get("PORT", 9170))
     app.run(host="127.0.0.1", port=9170)
