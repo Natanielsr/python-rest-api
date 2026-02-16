@@ -48,9 +48,9 @@ class SlideGenerator:
 
     def add_content(self):
 
-        left = top = Inches(1)  # Ajuste as coordenadas conforme necessário
-        width = Inches(8)  # Largura fixa do textbox
-        height = Inches(2)  # Altura fixa do textbox
+        left = top = Inches(0)  # Ajuste as coordenadas conforme necessário
+        width = Inches(13.333)  # Largura fixa do textbox
+        height = Inches(7.5)  # Altura fixa do textbox
 
         txBox = self.__slide_pptx.shapes.add_textbox(left, top, width, height)
         tf = txBox.text_frame
@@ -70,7 +70,7 @@ class SlideGenerator:
         #img_path = 'img/logo.png'
 
         top = Inches(6.25)
-        left = Inches(8.75)
+        left = Inches(12)
         height = Inches(1)
         pic = self.__slide_pptx.shapes.add_picture(self.path_logo, left, top, height=height)
 
