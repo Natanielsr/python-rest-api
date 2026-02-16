@@ -5,6 +5,8 @@ venv/
 *.pyc
 *.pyo
 __pycache__/
+build/
+dist/
 
 # Arquivos do sistema
 .DS_Store  # Para Mac
