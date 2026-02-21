@@ -69,8 +69,8 @@ class SlideGenerator:
     def add_img_logo(self):
         #img_path = 'img/logo.png'
 
-        top = Inches(6.25)
-        left = Inches(12)
+        top = Inches(5.1)
+        left = Inches(10)
         height = Inches(1)
         pic = self.__slide_pptx.shapes.add_picture(self.path_logo, left, top, height=height)
 
