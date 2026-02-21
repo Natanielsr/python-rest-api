@@ -1,7 +1,7 @@
 import math
 
 class FontSizeCalculation:
-    def __init__(self, largura=13.33, altura=7.5):
+    def __init__(self, largura=11.02, altura=6.20):
         # Área útil com margens de 1 polegada em cada lado
         self.area_util = (largura - 2) * (altura - 2) 
 

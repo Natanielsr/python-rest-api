@@ -3,7 +3,7 @@ from pptx import Presentation
 from slides_generator.music import  Music
 from slides_generator.slide_generator import SlideGenerator
 from slides_generator.slide_data import SlideData
-from pptx.util import Inches
+from pptx.util import Cm, Inches
 import traceback
 import os
 
@@ -23,8 +23,8 @@ class PresentationGenerator:
         self.__presentation = Presentation()
         # Definindo as dimensões para 16:9
         # Largura: 13.33 polegadas | Altura: 7.5 polegadas
-        self.__presentation.slide_width = Inches(13.333)
-        self.__presentation.slide_height = Inches(7.5)
+        self.__presentation.slide_width = Cm(28)
+        self.__presentation.slide_height = Cm(15.75)
         self.__slide_layout = self.__presentation.slide_layouts[6]
         self.__insert_title : bool = insert_title
         self.save_path = save_path

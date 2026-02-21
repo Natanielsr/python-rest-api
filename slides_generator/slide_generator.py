@@ -1,5 +1,5 @@
 from pptx import Presentation
-from pptx.util import Inches, Pt
+from pptx.util import Cm, Inches, Pt
 from pptx.enum.text import PP_ALIGN
 from pptx.dml.color import RGBColor
 from slides_generator.slide_data import SlideData
@@ -49,8 +49,8 @@ class SlideGenerator:
     def add_content(self):
 
         left = top = Inches(0)  # Ajuste as coordenadas conforme necessário
-        width = Inches(13.333)  # Largura fixa do textbox
-        height = Inches(7.5)  # Altura fixa do textbox
+        width = Cm(28)  # Largura fixa do textbox
+        height = Cm(15.75)  # Altura fixa do textbox
 
         txBox = self.__slide_pptx.shapes.add_textbox(left, top, width, height)
         tf = txBox.text_frame
