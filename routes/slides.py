@@ -25,9 +25,10 @@ def generate_slides():
         music_list : list[Music] = ml.get_music_list()
         path = resource_path('slide_file')
         path_logo = resource_path('images/icon.png')
+        path_img = resource_path('images/image.png')
         print(path_logo)
 
-        prs = PresentationGenerator(music_list, False, path, path_logo)
+        prs = PresentationGenerator(music_list, False, path, path_logo, path_img)
         prs.generate_presentation_slides()
         file_name = str(uuid.uuid4().hex) + '.pptx'
         prs.save_presentation_file(file_name)

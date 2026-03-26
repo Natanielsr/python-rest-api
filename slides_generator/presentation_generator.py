@@ -14,7 +14,8 @@ class PresentationGenerator:
             musics: List[Music],
             insert_title : bool = False,
             save_path : str = '',
-            path_logo : str = None
+            path_logo : str = None,
+            path_img: str = None
         ):
         if not all(isinstance(music, Music) for music in musics):
             raise TypeError("musics parameter must be a list of Music objects")
@@ -29,6 +30,7 @@ class PresentationGenerator:
         self.__insert_title : bool = insert_title
         self.save_path = save_path
         self.path_logo = path_logo
+        self.path_img = path_img
 
     def generate_presentation_slides(self):
         print("Generating presentation slides...")
@@ -41,8 +43,8 @@ class PresentationGenerator:
     
     def add_blank_slide(self):
         slide_data = SlideData("", "")
-        slideGen = SlideGenerator(self.__presentation, self.__slide_layout, slide_data, self.path_logo)
-        slideGen.create_stanza_slide(False)
+        slideGen = SlideGenerator(self.__presentation, self.__slide_layout, slide_data, self.path_logo, self.path_img)
+        slideGen.create_img_slide()
 
     def _generate_music_slides(self, music : Music):
         try:

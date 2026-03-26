@@ -6,11 +6,18 @@ from slides_generator.slide_data import SlideData
 from slides_generator.font_size_calculation import FontSizeCalculation
 
 class SlideGenerator:
-    def __init__(self, presentation : Presentation, slide_layout, slide_data : SlideData, path_logo : str = None):
+    def __init__(
+        self,
+        presentation : Presentation,
+        slide_layout,
+        slide_data : SlideData,
+        path_logo : str = None,
+        path_img : str = None):
         self.__presentation : Presentation = presentation
         self.__slide_layout = slide_layout
         self.__slide_data = slide_data
         self.path_logo = path_logo
+        self.path_img = path_img
 
         self.calculate_font_size()
 
@@ -21,6 +28,15 @@ class SlideGenerator:
         if insert_title:
             self.add_title()
         self.add_content()
+
+        if self.path_logo is not None:
+            self.add_img_logo()
+
+    def create_img_slide(self):
+        self.__slide_pptx = self.__presentation.slides.add_slide(self.__slide_layout)
+        self.set_background_color()
+
+        self.add_img()
 
         if self.path_logo is not None:
             self.add_img_logo()
@@ -74,7 +90,12 @@ class SlideGenerator:
         height = Inches(1)
         pic = self.__slide_pptx.shapes.add_picture(self.path_logo, left, top, height=height)
 
-   
+    def add_img(self):
+        left = top = Inches(0)  # Ajuste as coordenadas conforme necessário
+        width = Cm(28)  # Largura fixa do textbox
+        height = Cm(15.75)  # Altura fixa do textbox
+        pic = self.__slide_pptx.shapes.add_picture(self.path_img, left, top, height=height, width=width)
+    
     def calculate_font_size(self):
         fsc = FontSizeCalculation()
         sfs = fsc.calcular_tamanho_fonte(self.__slide_data.stanza)
